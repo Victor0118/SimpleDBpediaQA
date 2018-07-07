@@ -78,17 +78,17 @@ if __name__=="__main__":
     for fold in folds:
         exact_match_counter = 0
         total = 0
-        fin = open("/mnt/collections/p8shi/dev/SimpleDBPediaQA/data/{}.json".format(fold))
+        fin = open("../data/{}.json".format(fold))
         json_data = json.load(fin)
-        fout = open("/mnt/collections/p8shi/dev/SimpleDBPediaQA/data/{}.txt".format(fold), "w")
+        fout = open("../data/{}.txt".format(fold), "w")
         for instance in json_data["Questions"]:
             total += 1
             idx = instance["ID"]
             sub = instance["Subject"]
-            pre = instance["PredicateList"][0]["Predicate"]
-            direction = instance["PredicateList"][0]["Direction"]
-            constraint = instance["PredicateList"][0]["Constraint"]
-            free_pre = instance["FreebasePredicate"]
+            pre = instance["RelatioList"][0]["Relation"]
+            direction = instance["RelatioList"][0]["Direction"]
+            constraint = instance["RelatioList"][0]["Constraint"]
+            free_pre = instance["FreebaseRelation"]
             question = instance["Query"]
             entity = sub.replace("http://dbpedia.org/resource/", "")
             processed_query = processed_text(repalce_punc(question))
